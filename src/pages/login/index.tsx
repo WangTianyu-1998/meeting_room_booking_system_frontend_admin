@@ -3,6 +3,7 @@ import "./index.css";
 import { useCallback } from "react";
 import { login } from "./api";
 import { message } from "../../utils/antd-global";
+import { useNavigate } from "react-router-dom";
 
 interface LoginUser {
   username: string;
@@ -15,8 +16,18 @@ const layout1 = {
 };
 
 export function Login() {
+  const navigate = useNavigate();
+
   const onFinish = useCallback(async (values: LoginUser) => {
-    await login(values);
+    const res = await login(values);
+    console.log("🚀 ~ onFinish ~ res:", res);
+    localStorage.setItem("access_token", res.data.accessToken);
+    localStorage.setItem("refresh_token", res.data.refreshToken);
+    localStorage.setItem("user_info", JSON.stringify(res.data.userInfo));
+
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
     message.success("登录成功!");
   }, []);
 

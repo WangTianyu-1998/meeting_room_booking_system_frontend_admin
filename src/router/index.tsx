@@ -1,7 +1,8 @@
 import ErrorPage from "@/pages/error-page";
 import Index from "@/pages/Index";
 import { Login } from "@/pages/login";
-import UserManage from "@/pages/user-manage";
+import { Menu } from "@/pages/menu";
+import { UserManage } from "@/pages/user-manage";
 
 export const routes = [
   {
@@ -10,8 +11,14 @@ export const routes = [
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "user_manage",
-        element: <UserManage />,
+        path: "/",
+        element: <Menu></Menu>,
+        children: [
+          {
+            path: "user_manage",
+            element: <UserManage />,
+          },
+        ],
       },
     ],
   },

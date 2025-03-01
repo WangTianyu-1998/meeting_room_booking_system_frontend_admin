@@ -1,11 +1,19 @@
-import React, { type FC } from "react";
+import { UserOutlined } from "@ant-design/icons";
 import { Outlet } from "react-router-dom";
-const Index: FC = () => {
+import "./index.css";
+
+function Index() {
   return (
-    <div>
-      Index
-      <Outlet />
+    <div id="index-container">
+      <div className="header">
+        <h1>会议室预定系统-后台管理</h1>
+        <UserOutlined className="icon" />
+      </div>
+      <div className="body">
+        <Outlet></Outlet>
+      </div>
     </div>
   );
-};
+}
+
 export default Index;
