@@ -89,13 +89,13 @@ export function UserManage() {
   }, []);
 
   useEffect(() => {
-    const formData = form.getFieldsValue();
+    const formData = form?.getFieldsValue();
     searchUser({
       ...formData,
       pageNo,
       pageSize,
     });
-  }, [pageNo, pageSize]);
+  }, [pageNo, pageSize, form]);
 
   return (
     <div id="userManage-container">
@@ -126,6 +126,7 @@ export function UserManage() {
       </div>
       <div className="userManage-table">
         <Table
+          rowKey="id"
           columns={columns}
           dataSource={tableData}
           pagination={{
